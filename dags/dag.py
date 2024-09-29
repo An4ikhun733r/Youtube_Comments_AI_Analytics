@@ -129,16 +129,16 @@ def generate_suggestions_from_comments(**kwargs):
 
         # Generate a completion using the new interface
         completion = client.chat.completions.create(
-            model="gpt-4o-mini",  # Ensure this model is available to you
+            model="gpt-4o-mini",  # Change to a valid model
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ]
         )
-
+    
         # Extract and print suggestions
-        if completion.choices:
-            suggestions = completion.choices[0].message['content'].strip()
+        if completion and completion.choices:
+            suggestions = completion.choices[0].message['content']  # Use message['content'] correctly
             print(f"Generated suggestions: {suggestions}")  # Debug statement
             kwargs['ti'].xcom_push(key='suggestions', value=suggestions)
         else:
@@ -146,8 +146,6 @@ def generate_suggestions_from_comments(**kwargs):
 
     except Exception as e:
         print(f"Error while generating suggestions: {e}")
-
-
 
 def use_suggestions(**kwargs):
     suggestions = kwargs['ti'].xcom_pull(key='suggestions', task_ids='generate_suggestions')
