@@ -16,7 +16,7 @@ body {
 }
 
 nav {
-  background-color: #333;
+  background-color: #4b0082; /* Purple */
   padding: 1rem;
   text-align: center;
 }
@@ -42,12 +42,12 @@ nav ul li a:hover {
 
 nav li a:hover,
 nav li a.active {
-  color: #10ecde;
+  color: #1e90ff; /* Light Blue */
 }
 
 /* Header */
 header {
-  background-color: #555;
+  background-color: #6a0dad; /* Darker Purple */
   color: white;
   padding: 2rem 1rem;
   text-align: center;
@@ -95,12 +95,12 @@ header p {
 }
 
 .form-box input:focus {
-  border-color: #007bff;
+  border-color: #1e90ff; /* Light Blue */
   outline: none;
 }
 
 .form-box button {
-  background-color: #28a745;
+  background-color: #6a0dad; /* Darker Purple */
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -110,7 +110,7 @@ header p {
 }
 
 .form-box button:hover {
-  background-color: #218838;
+  background-color: #580f8c; /* Dark Purple */
 }
 
 /* Suggestions */
@@ -140,18 +140,19 @@ pre {
   line-height: 1.5;
   overflow-x: auto;
 }
+
 .back-btn {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;
-  background-color: #007bff;
+  background-color: #1e90ff; /* Light Blue */
   color: white;
   text-decoration: none;
   border-radius: 5px;
 }
 
 .back-btn:hover {
-  background-color: #0056b3;
+  background-color: #0c7bca; /* Darker Blue */
 }
 
 /* Donate Options */
@@ -182,20 +183,20 @@ pre {
 .donate-button {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: #ffc107;
-  color: #333;
+  background-color: #9370db; /* Medium Purple */
+  color: white;
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
 }
 
 .donate-button:hover {
-  background-color: #e0a800;
+  background-color: #7a68b3; /* Darker Medium Purple */
 }
 
 /* Footer */
 footer {
-  background-color: #333;
+  background-color: #4b0082; /* Purple */
   color: white;
   text-align: center;
   padding: 1.5rem 0;
@@ -207,7 +208,7 @@ footer p {
 }
 
 footer p a {
-  color: #ffeb3b;
+  color: #ffeb3b; /* Yellow */
   text-decoration: none;
   font-weight: bold;
 }
@@ -224,7 +225,7 @@ footer p a:hover {
 .button {
   display: inline-block; /* Makes the button behave like a block element */
   padding: 0.75rem 1.5rem; /* Add padding for size */
-  background-color: #007bff; /* Change background color */
+  background-color: #1e90ff; /* Light Blue */
   color: white; /* Text color */
   text-decoration: none; /* Remove underline */
   border-radius: 5px; /* Rounded corners */
@@ -234,6 +235,6 @@ footer p a:hover {
 }
 
 .button:hover {
-  background-color: #0056b3; /* Darker background on hover */
+  background-color: #0c7bca; /* Darker Blue */
   transform: translateY(-2px); /* Slight lift effect on hover */
 }
