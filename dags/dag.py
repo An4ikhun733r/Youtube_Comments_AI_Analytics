@@ -138,11 +138,12 @@ def generate_suggestions_from_comments(**kwargs):
     
         # Extract and print suggestions
         if completion and completion.choices:
-            suggestions = completion.choices[0].message['content']  # Use message['content'] correctly
+            suggestions = completion.choices[0].message.content  # Use dot notation correctly
             print(f"Generated suggestions: {suggestions}")  # Debug statement
             kwargs['ti'].xcom_push(key='suggestions', value=suggestions)
         else:
             print("No suggestions generated.")  # Debug statement
+
 
     except Exception as e:
         print(f"Error while generating suggestions: {e}")
@@ -157,7 +158,7 @@ def use_suggestions(**kwargs):
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2024, 9, 29),
+    'start_date': datetime(2024, 9, 30),
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
 }
