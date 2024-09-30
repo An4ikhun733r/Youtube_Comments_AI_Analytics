@@ -3,6 +3,7 @@ import time
 from flask import Flask, render_template, request
 import requests
 from dotenv import load_dotenv
+import markdown
 
 # Load environment variables from the .env file
 dotenv_path = os.path.join(os.path.dirname(__file__), 'keys.env')
@@ -27,10 +28,23 @@ def submit():
     
     if dag_run_id:
         # Poll for the suggestions after triggering the DAG
-        suggestions = poll_for_suggestions(dag_run_id)
-        return render_template('suggestions.html', video_id=video_id, suggestions=suggestions)
+        raw_suggestions = poll_for_suggestions(dag_run_id)
+        
+        # Convert Markdown to HTML
+        suggestions_html = markdown.markdown(raw_suggestions)
+        
+        return render_template('suggestions.html', video_id=video_id, suggestions=suggestions_html)
     else:
         return render_template('error.html', message="Failed to trigger DAG.")
+
+
+@app.route('/donate')
+def donate():
+    return render_template('donate.html')
+
+@app.route('/suggestions')
+def suggestions():
+    return render_template('suggestions_info.html')
 
 def trigger_dag(video_id):
     url = f"{AIRFLOW_URL}/api/v1/dags/fetch_and_store_comments_from_video/dagRuns"

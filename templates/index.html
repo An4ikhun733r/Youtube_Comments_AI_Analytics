@@ -4,22 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube Comment Suggestions</title>
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
   </head>
   <body>
-    <div class="container">
-      <h1>Get Suggestions from YouTube Comments</h1>
-      <form action="/submit" method="post" class="video-id-form">
+    <nav>
+      <ul>
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/suggestions">Suggestions</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <h1>YouTube Comment Suggestions</h1>
+      <p>
+        Generate valuable suggestions based on YouTube comments using AI-powered
+        insights!
+      </p>
+    </header>
+
+    <section class="content">
+      <form action="/submit" method="post" class="form-box">
         <label for="video_id">YouTube Video ID:</label>
         <input
           type="text"
           id="video_id"
           name="video_id"
           required
-          placeholder="Enter video ID here"
+          placeholder="Enter YouTube Video ID"
         />
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </section>
+
+    <footer>
+      <p>
+        Powered by OpenAI API 4o-mini. Feel free to <a href="#">donate</a> to
+        support this project.
+      </p>
+    </footer>
   </body>
 </html>

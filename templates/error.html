@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error - YouTube Comment Suggestions</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/suggestions">Suggestions</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <h1>Oops! Something Went Wrong</h1>
+      <p>We're sorry, but we couldn't process your request.</p>
+    </header>
+
+    <section class="content">
+      <div class="error-box">
+        <p>{{ message }}</p>
+      </div>
+      <a href="/" class="back-btn">Go Back Home</a>
+    </section>
+
+    <footer>
+      <p>
+        Powered by OpenAI API 4o-mini. Feel free to
+        <a href="/donate">donate</a> to support this project.
+      </p>
+    </footer>
+  </body>
+</html>

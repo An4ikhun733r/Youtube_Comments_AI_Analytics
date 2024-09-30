@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Comment Suggestions</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a class="active" href="/suggestions">Suggestions</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <h1>Suggestions Powered by OpenAI API 4o-mini</h1>
+    </header>
+
+    <section class="content">
+      <div class="intro">
+        <p>
+          The suggestions provided are generated through an advanced AI model,
+          OpenAI API 4o-mini. This tool analyzes user comments on a given
+          YouTube video and extracts valuable insights.
+        </p>
+        <p>
+          By examining feedback, questions, and opinions from viewers, the AI
+          generates recommendations that can help creators improve their
+          content, engage with their audience more effectively, and address
+          common concerns or queries.
+        </p>
+      </div>
+      <div class="highlights">
+        <h2>Key Benefits:</h2>
+        <ul>
+          <li>Address technical questions effectively.</li>
+          <li>Clarify concepts for better understanding.</li>
+          <li>Suggest new video ideas based on viewer interest.</li>
+          <li>
+            Foster a stronger connection between creators and their audience.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Powered by OpenAI API 4o-mini. Feel free to <a href="#">donate</a> to
+        support this project.
+      </p>
+    </footer>
+  </body>
+</html>

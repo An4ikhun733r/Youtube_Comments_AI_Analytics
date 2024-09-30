@@ -7,21 +7,36 @@
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Suggestions for Video ID: {{ video_id }}</h1>
-      <pre class="suggestions">{{ suggestions }}</pre>
-      <form action="/submit" method="post" class="video-id-form">
-        <label for="video_id">Submit Another Video ID:</label>
-        <input
-          type="text"
-          id="video_id"
-          name="video_id"
-          required
-          placeholder="Enter video ID here"
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <a href="/" class="home-link">Go to Home</a>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/suggestions">Suggestions</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </nav>
+
+    <h1 class="suggestions-header">
+      We analyzed the comments on your video to provide insightful suggestions!
+    </h1>
+
+    <div class="suggestions-box">
+      <h2>Suggestions for Video ID: {{ video_id }}</h2>
+      <div class="suggestions-content">
+        <p>
+          Based on the comments provided, here are some suggestions and feedback
+          that could address the various sentiments expressed by the viewers:
+        </p>
+        <div>{{ suggestions|safe }}</div>
+        <!-- Allow HTML content -->
+      </div>
+      <div class="button-container">
+        <a href="/" class="button">Back to Home</a>
+      </div>
     </div>
+
+    <footer>
+      Powered by OpenAI API 4o-mini. Feel free to
+      <a href="/donate">donate</a> to support this project.
+    </footer>
   </body>
 </html>
