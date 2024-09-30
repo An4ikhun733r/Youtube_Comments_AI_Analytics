@@ -37,7 +37,6 @@ This project leverages a variety of powerful tools and technologies:
 - **Transform**: Clean and preprocess the comments data, ensuring it is ready for analysis. This involves various transformations, including text normalization and sentiment analysis.
 - **Load**: Store the transformed data in a PostgreSQL database for further analysis.
 - **AI-Powered Suggestions**: Utilize machine learning algorithms to analyze the comments and provide tailored suggestions for improving content based on audience feedback.
-- **CSV Export**: Generate a CSV file containing all comments and the corresponding AI-generated insights for easy sharing and review.
 
 ## Getting Started
 
@@ -81,13 +80,11 @@ The ETL process follows a structured workflow:
 2. **Transformation**: Extracted comments undergo cleaning and preprocessing. Text normalization, tokenization, and sentiment analysis are performed to prepare the data for analysis.
 3. **Loading**: Transformed comments are loaded into a PostgreSQL database, where they can be efficiently queried and analyzed.
 4. **AI Analysis**: Machine learning models analyze the comments, generating insights and suggestions for content improvement.
-5. **Output Generation**: A CSV file is created, containing all comments along with AI-generated suggestions.
 
 ## Output
 
-The final output of the project is a CSV file containing:
+The final output of the project:
 
-- All comments extracted from the YouTube video
 - AI-generated suggestions for improving video content based on the analysis of audience feedback
 
 ## Future Enhancements
