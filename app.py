@@ -1,4 +1,5 @@
 import os
+import re
 import time
 from flask import Flask, render_template, request
 import requests
@@ -23,6 +24,9 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     video_id = request.form['video_id']
+    
+    if not is_valid_video_id(video_id):
+        return render_template('error.html', message="Invalid video ID. Please enter a valid YouTube video ID.")
     # Trigger the DAG and get the DAG run ID
     dag_run_id = trigger_dag(video_id)
     
@@ -88,7 +92,12 @@ def poll_for_suggestions(dag_run_id):
 
         time.sleep(5)  # Wait before polling again
 
-    return "Polling timed out, suggestions not available."
+    return "Such video either not exist or was deleted"
+
+def is_valid_video_id(video_id):
+    # Regex pattern for a valid YouTube video ID
+    pattern = r'^[a-zA-Z0-9_-]{11}$'
+    return re.match(pattern, video_id) is not None
 
 def fetch_suggestions_from_xcom(dag_run_id):
     task_id = 'generate_suggestions'  # Ensure this matches your task ID
