@@ -11,7 +11,7 @@ apache-airflow-providers-smtp==1.8.0
 apache-airflow-providers-sqlite==3.9.0
 parsedatetime==2.6
 docker==5.0.3
-PyYAML==5.4.1
+PyYAML==6.0
 dockerpty==0.4.1
 python-dotenv==0.19.2
 google-api-core==2.19.2
