@@ -4,6 +4,11 @@
 
 This project is a comprehensive ETL (Extract, Transform, Load) solution that utilizes advanced technologies to analyze comments from YouTube videos. The primary objective is to gather comments, transform and analyze them, and provide actionable insights for content improvement using AI.
 
+Here are some screenshots of the Project.
+![image](https://github.com/user-attachments/assets/164b10ef-5c88-4617-8793-ed1a52c70f04)
+![image](https://github.com/user-attachments/assets/cdd7ba10-6f45-4074-85be-3e7425bad120)
+![image](https://github.com/user-attachments/assets/a46ada4e-abf5-4a06-9ab6-64c37447ce70)
+
 ## Table of Contents
 
 - [Technologies Used](#technologies-used)
