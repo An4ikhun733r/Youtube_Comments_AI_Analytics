@@ -54,19 +54,15 @@ To get started with the project, follow these steps:
    ```
 
 2. **Install dependencies**:
-   Navigate to the project directory and build the containers through Docker:
+   Navigate to the project directory install dependencies and build the containers through Docker:
    ```bash
+   pip install -r requirements.txt
    docker-compose build
    docker-compose up
    ```
    After that you can run the project on localhost.
-   Linux:
    ```bash
-   python3 app.py
-   ```
-   Windows:
-   ```bash
-   python app.py
+   gunicorn -w 4 -b 0.0.0.0:5000 app:app
    ```
 
 3. **Set up PostgreSQL**:
