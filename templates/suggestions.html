@@ -3,11 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Suggestions for Video ID: {{ video_id }}</title>
+    <title>YouTube Comment Suggestions</title>
+    <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <h1>Suggestions for Video ID: {{ video_id }}</h1>
-    <p>{{ suggestions }}</p>
-    <a href="/">Go back</a>
+    <div class="container">
+      <h1>Suggestions for Video ID: {{ video_id }}</h1>
+      <pre class="suggestions">{{ suggestions }}</pre>
+      <form action="/submit" method="post" class="video-id-form">
+        <label for="video_id">Submit Another Video ID:</label>
+        <input
+          type="text"
+          id="video_id"
+          name="video_id"
+          required
+          placeholder="Enter video ID here"
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <a href="/" class="home-link">Go to Home</a>
+    </div>
   </body>
 </html>

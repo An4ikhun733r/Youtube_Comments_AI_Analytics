@@ -4,13 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube Comment Suggestions</title>
+    <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <h1>Get Suggestions from YouTube Comments</h1>
-    <form action="/submit" method="post">
-      <label for="video_id">YouTube Video ID:</label>
-      <input type="text" id="video_id" name="video_id" required />
-      <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+      <h1>Get Suggestions from YouTube Comments</h1>
+      <form action="/submit" method="post" class="video-id-form">
+        <label for="video_id">YouTube Video ID:</label>
+        <input
+          type="text"
+          id="video_id"
+          name="video_id"
+          required
+          placeholder="Enter video ID here"
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </body>
 </html>
