@@ -118,4 +118,4 @@ def fetch_suggestions_from_xcom(dag_run_id):
     return "No suggestions available."
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
