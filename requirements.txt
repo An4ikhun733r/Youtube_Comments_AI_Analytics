@@ -30,7 +30,6 @@ certifi==2020.6.20
 cffi==1.17.1
 chardet==4.0.0
 charset-normalizer==3.3.2
-cliapp==1.20180812.1
 click==8.1.7
 clickclick==20.10.2
 cmdtest==0.32+git
