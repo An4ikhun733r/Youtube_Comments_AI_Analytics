@@ -32,7 +32,6 @@ chardet==4.0.0
 charset-normalizer==3.3.2
 click==8.1.7
 clickclick==20.10.2
-cmdtest==0.32+git
 colorama==0.4.4
 colorlog==6.8.2
 command-not-found==0.3
