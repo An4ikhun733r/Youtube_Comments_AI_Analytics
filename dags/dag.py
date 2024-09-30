@@ -13,10 +13,7 @@ from airflow.providers.postgres.operators.postgres import PostgresOperator
 dotenv_path = os.path.join(os.path.dirname(__file__), 'keys.env')
 load_dotenv(dotenv_path)
 
-# Specify the video ID here for dynamic table creation
-VIDEO_ID = "q8q3OFFfY6c"  # Replace with your video ID
-
-def fetch_comments_from_video(**kwargs):
+def fetch_comments_from_video(video_id, **kwargs):
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
     api_service_name = "youtube"
@@ -32,7 +29,7 @@ def fetch_comments_from_video(**kwargs):
 
         request = youtube.commentThreads().list(
             part="snippet,replies",
-            videoId=VIDEO_ID,  # Use the VIDEO_ID variable here
+            videoId=video_id,  # Use the video_id parameter here
             maxResults=100,
             pageToken=next_page_token
         )
@@ -65,7 +62,7 @@ def process_comments(response_items):
     print(f'Finished processing {len(comments)} comments on this page.')
     return comments
 
-def save_comments_to_postgres(**kwargs):
+def save_comments_to_postgres(video_id, **kwargs):
     comments = kwargs['ti'].xcom_pull(key='comments', task_ids='fetch_comments_data')
 
     if not comments:
@@ -86,7 +83,7 @@ def save_comments_to_postgres(**kwargs):
         cursor = connection.cursor()
         
         # Use the dynamic table name with the video ID
-        table_name = f"comments_{VIDEO_ID}"
+        table_name = f"comments_{video_id}"
 
         for comment in comments:
             cursor.execute(f"""
@@ -103,9 +100,6 @@ def save_comments_to_postgres(**kwargs):
     finally:
         cursor.close()
         connection.close()
-
-# Function to generate suggestions using OpenAI API
-import openai
 
 def generate_suggestions_from_comments(**kwargs):
     openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -124,26 +118,21 @@ def generate_suggestions_from_comments(**kwargs):
     prompt = f"Based on the following YouTube comments, provide suggestions or feedback: {comments_text}"
 
     try:
-        # Initialize the OpenAI client
         client = OpenAI(api_key=openai_api_key)
-
-        # Generate a completion using the new interface
         completion = client.chat.completions.create(
-            model="gpt-4o-mini",  # Change to a valid model
+            model="gpt-4o-mini",  
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ]
         )
     
-        # Extract and print suggestions
         if completion and completion.choices:
-            suggestions = completion.choices[0].message.content  # Use dot notation correctly
-            print(f"Generated suggestions: {suggestions}")  # Debug statement
+            suggestions = completion.choices[0].message.content
+            print(f"Generated suggestions: {suggestions}")  
             kwargs['ti'].xcom_push(key='suggestions', value=suggestions)
         else:
-            print("No suggestions generated.")  # Debug statement
-
+            print("No suggestions generated.")  
 
     except Exception as e:
         print(f"Error while generating suggestions: {e}")
@@ -170,14 +159,15 @@ dag = DAG(
     schedule_interval=timedelta(days=1),
 )
 
-# Create the dynamic table name
-table_name = f"comments_{VIDEO_ID}"
+# Here you can get the video_id dynamically from the UI when the DAG is triggered
+# You need to pass the video_id as a parameter to the DAG run
+video_id = '{{ dag_run.conf["video_id"] }}'  # Dynamically get video_id
 
 create_table_task = PostgresOperator(
     task_id='create_table',
     postgres_conn_id='comments_connection',
     sql=f"""
-    CREATE TABLE IF NOT EXISTS {table_name} (
+    CREATE TABLE IF NOT EXISTS comments_{video_id} (
         id SERIAL PRIMARY KEY,
         author TEXT NOT NULL,
         comment TEXT NOT NULL,
@@ -190,6 +180,7 @@ create_table_task = PostgresOperator(
 fetch_comments_data_task = PythonOperator(
     task_id='fetch_comments_data',
     python_callable=fetch_comments_from_video,
+    op_kwargs={'video_id': video_id},  # Pass video_id as argument
     provide_context=True,
     dag=dag,
 )
@@ -197,6 +188,7 @@ fetch_comments_data_task = PythonOperator(
 insert_comments_data_task = PythonOperator(
     task_id='insert_comments_data',
     python_callable=save_comments_to_postgres,
+    op_kwargs={'video_id': video_id},  # Pass video_id as argument
     provide_context=True,
     dag=dag,
 )
