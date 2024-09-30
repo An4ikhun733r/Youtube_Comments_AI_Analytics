@@ -49,10 +49,19 @@ To get started with the project, follow these steps:
    ```
 
 2. **Install dependencies**:
-   Navigate to the project directory and install the required Python packages:
+   Navigate to the project directory and build the containers through Docker:
    ```bash
-   cd YouTube-Comments-ETL
-   pip install -r requirements.txt
+   docker-compose build
+   docker-compose up
+   ```
+   After that you can run the project on localhost.
+   Linux:
+   ```bash
+   python3 app.py
+   ```
+   Windows:
+   ```bash
+   python app.py
    ```
 
 3. **Set up PostgreSQL**:
