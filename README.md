@@ -9,6 +9,12 @@ Here are some screenshots of the Project.
 ![image](https://github.com/user-attachments/assets/cdd7ba10-6f45-4074-85be-3e7425bad120)
 ![image](https://github.com/user-attachments/assets/a46ada4e-abf5-4a06-9ab6-64c37447ce70)
 
+Graph in Airflow:
+![image](https://github.com/user-attachments/assets/e91efa4a-05b1-41d4-b816-e500d79895ed)
+
+Tables of comments for each video:
+![image](https://github.com/user-attachments/assets/ce5a1770-42d3-4630-b6f5-bf4144431fab)
+
 ## Table of Contents
 
 - [Technologies Used](#technologies-used)
